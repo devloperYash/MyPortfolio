@@ -10,6 +10,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
+import Chatbot from './components/Chatbot';
 
 // ─── Scroll Progress Bar ──────────────────
 function ScrollProgress() {
@@ -37,7 +38,6 @@ function Footer() {
           {[
             { label: 'GitHub', href: 'https://github.com/devloperYash' },
             { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yash-lawankar-17a752259/' },
-            { label: 'Email', href: 'mailto:yashlawankar@gmail.com' },
           ].map((l) => (
             <a
               key={l.label}
@@ -455,6 +455,9 @@ export default function App() {
 
       {/* Custom cursor */}
       <CustomCursor />
+
+      {/* AI Chatbot */}
+      {loaded && <Chatbot />}
 
       {/* Scroll progress bar */}
       {loaded && <ScrollProgress />}
