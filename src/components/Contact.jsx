@@ -26,7 +26,7 @@ export default function Contact() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // Replace with your Web3Forms access key
+          access_key: 'b3f7ca7b-55e8-4bdf-a187-e3e56ad6a6ed', // Web3Forms access key
           name: form.name,
           email: form.email,
           message: form.message,
