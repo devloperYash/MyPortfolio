@@ -93,6 +93,22 @@ export default function Contact() {
             Available for opportunities &middot; Graduating Aug 2026
           </span>
         </motion.div>
+
+        {/* Personal Quote */}
+        <motion.div
+          className="mt-8 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.8 }}
+        >
+          <p className="font-mono text-[13px] tracking-wider italic text-white">
+            "I didn't come from a tech city. I brought the tech to where I came from."
+          </p>
+          <p className="font-mono text-[13px] tracking-wider mt-2 text-white">
+            — Yash Lawankar
+          </p>
+        </motion.div>
       </div>
     </section>
   );

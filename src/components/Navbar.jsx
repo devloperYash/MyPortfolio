@@ -20,12 +20,18 @@ export default function Navbar() {
     const onScroll = () => {
       setVisible(window.scrollY > 100);
       const ids = links.map((l) => l.href.slice(1));
+      let currentActive = '';
       for (let i = ids.length - 1; i >= 0; i--) {
         const el = document.getElementById(ids[i]);
-        if (el && window.scrollY >= el.offsetTop - 200) { setActive(ids[i]); break; }
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 200) { currentActive = ids[i]; break; }
+        }
       }
+      setActive(currentActive);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once on mount to set initial active
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 

@@ -27,10 +27,10 @@ function Footer() {
   return (
     <footer className="relative z-10 border-t border-white/[0.04] py-10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-4">
-        <span className="font-mono text-white/15 text-xs tracking-wider">
+        <span className="font-mono text-white/60 text-xs tracking-wider">
           YL<span className="text-[#6366f1]">.</span> &copy; {new Date().getFullYear()}
         </span>
-        <p className="text-white/10 text-[10px] font-mono tracking-widest uppercase">
+        <p className="text-white/50 text-[10px] font-mono tracking-widest uppercase">
           Designed &amp; built by Yash Lawankar
         </p>
         <div className="flex gap-6">
@@ -44,7 +44,7 @@ function Footer() {
               href={l.href}
               target={l.href.startsWith('mailto') ? undefined : '_blank'}
               rel="noopener noreferrer"
-              className="text-white/15 text-xs hover:text-white/50 transition-colors duration-300 font-mono tracking-wider underline-draw"
+              className="text-white/50 text-xs hover:text-white transition-colors duration-300 font-mono tracking-wider underline-draw"
             >
               {l.label}
             </a>
@@ -90,7 +90,7 @@ export default function App() {
 
   const canvasRef = useRef(null);
   const rendererRef = useRef(null);
-  
+
   // Parallax positioning
   const mousePos = useRef({ x: 0, y: 0 });
   const lerpedPos = useRef({ x: 0, y: 0 });
@@ -193,7 +193,7 @@ export default function App() {
   }, []);
 
   const initThree = () => {
-    if (!canvasRef.current) return () => {};
+    if (!canvasRef.current) return () => { };
     const THREE = window.THREE;
 
     // Scene
@@ -398,29 +398,28 @@ export default function App() {
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
-      
+
       // Clean up WebGL resources
       geometry.dispose();
       material.dispose();
       texture.dispose();
       lineGeometry.dispose();
       lineMaterial.dispose();
-      
+
       shapeGeometries.forEach(g => g.dispose());
       shapeMaterials.forEach(m => m.dispose());
-      
+
       scene.clear();
     };
   };
 
   return (
     <div
-      className={`min-h-screen bg-[#080808] text-white font-sans overflow-x-hidden relative ${
-        glitch ? 'glitch-mode glitch-active' : ''
-      }`}
+      className={`min-h-screen bg-[#080808] text-white font-sans overflow-x-hidden relative ${glitch ? 'glitch-mode glitch-active' : ''
+        }`}
     >
       {/* ─── GLOBAL BACKGROUND SYSTEM (Fixed Layers) ─── */}
-      
+
       {/* Base background color */}
       <div className="fixed inset-0 bg-[#080808] -z-30 pointer-events-none" />
 
@@ -511,8 +510,6 @@ export default function App() {
             {/* Contact Wrapper */}
             <div className="relative z-10">
               <Contact />
-              {/* Contact accent: slight cyan tint everywhere */}
-              <div className="absolute inset-0 bg-[#22d3ee] opacity-[0.03] blur-[120px] pointer-events-none -z-10" />
             </div>
           </main>
           <Footer />

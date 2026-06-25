@@ -1,6 +1,6 @@
 // FILE: src/components/Achievements.jsx
 import { motion } from 'framer-motion';
-import { Award, BookOpen, Star, Users, CheckCircle, BarChart2 } from 'lucide-react';
+import { Award, BookOpen, Star, Users, CheckCircle, BarChart2, Trophy, Medal } from 'lucide-react';
 
 const stats = [
   {
@@ -28,6 +28,38 @@ const stats = [
 
 const items = [
   {
+    category: 'University Honor',
+    title: 'University Color Coat Holder — SGBAU',
+    description: 'Awarded the prestigious University Color Coat by Sant Gadge Baba Amravati University (2024–25) in recognition of the FloraVision AI project — a distinction given to outstanding achievers across the university.',
+    badge: '2024–25',
+    icon: Award,
+    color: '#f59e0b'
+  },
+  {
+    category: 'Hackathon',
+    title: 'National Ecothon — Winner',
+    description: 'Won the National Ecothon hackathon held at Sipna COET (2025), competing against teams from across the country with an innovative tech-driven solution.',
+    badge: 'Winner 2025',
+    icon: Trophy,
+    color: '#6366f1'
+  },
+  {
+    category: 'Hackathon',
+    title: 'Devothon — Winner',
+    description: 'First-place finish at Devothon hackathon held at Sipna COET (2025), demonstrating rapid prototyping and full-stack development under time constraints.',
+    badge: 'Winner 2025',
+    icon: Trophy,
+    color: '#22d3ee'
+  },
+  {
+    category: 'Competitions',
+    title: '4+ Project Expo Wins',
+    description: 'Consistently secured top positions across multiple inter-college and intra-college project expos, showcasing AI, full-stack, and computer vision projects.',
+    badge: 'Multiple Wins',
+    icon: Medal,
+    color: '#f472b6'
+  },
+  {
     category: 'Competitions',
     title: 'Purplle Tech Challenge 2026',
     description: 'Selected for the Final Round of the Purplle Tech Challenge for developing a high-throughput Store Intelligence Pipeline.',
@@ -50,6 +82,14 @@ const items = [
     badge: 'Verified Coursework',
     icon: CheckCircle,
     color: '#f472b6'
+  },
+  {
+    category: 'Certifications',
+    title: 'SmartBridge – Salesforce Developer',
+    description: 'Completed Salesforce development program via SmartBridge covering Apex programming, Lightning Web Components, SOQL, triggers, and CRM customization.',
+    badge: 'Certified',
+    icon: CheckCircle,
+    color: '#f59e0b'
   }
 ];
 
@@ -127,7 +167,7 @@ export default function Achievements() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: idx * 0.15 }}
+                transition={{ duration: 0.7, delay: idx * 0.1 }}
               >
                 <div>
                   <div className="flex justify-between items-center mb-6">
