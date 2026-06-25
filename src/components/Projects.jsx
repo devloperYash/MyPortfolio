@@ -10,7 +10,7 @@ const projects = [
     description: 'High-throughput computer vision pipeline using YOLOv8 to automate retail store analytics. Combines real-time crowd dynamics, heatmaps, and queue-waiting estimation.',
     stack: ['YOLOv8', 'FastAPI', 'Redis Streams', 'Live Dashboard'],
     github: 'https://github.com/devloperYash/Purplle-Challenge-2026',
-    link: '#',
+    link: 'https://github.com/devloperYash/Purplle-Challenge-2026',
     badge: 'Hackathon Finalist',
     color: '#6366f1', // Indigo
     icon: Cpu
@@ -22,7 +22,7 @@ const projects = [
     description: 'Full-stack AI assistant streamlining candidate screening. Leverages Natural Language Processing to score responses, analyze emotional sentiments, and ask adaptive follow-up questions.',
     stack: ['Python', 'NLP', 'REST APIs', 'React'],
     github: 'https://github.com/devloperYash/AI-Mock-Interview-Platform-public-',
-    link: '#',
+    link: 'https://github.com/devloperYash/AI-Mock-Interview-Platform-public-',
     badge: 'Final Year Project',
     color: '#22d3ee', // Cyan
     icon: Code
@@ -34,7 +34,7 @@ const projects = [
     description: 'Deep neural network trained on extensive agricultural datasets to identify crop leaf pathogens. Serves diagnostic predictions and treatment schedules instantly.',
     stack: ['Deep Learning', 'Computer Vision', 'Python', 'FastAPI'],
     github: 'https://github.com/devloperYash/Flora-Vision-Ai-public-',
-    link: '#',
+    link: 'https://github.com/devloperYash/Flora-Vision-Ai-public-',
     badge: 'Research & AI',
     color: '#f472b6', // Pink
     icon: Settings
@@ -46,7 +46,7 @@ const projects = [
     description: 'Advanced pipeline for structured datasets incorporating data preprocessing, LLM integration, custom prompting templates, and automated Knowledge Graph generation with an interactive UI dashboard.',
     stack: ['Data Preprocessing', 'LLM Integration', 'Prompting', 'Knowledge Graphs', 'React UI'],
     github: 'https://github.com/devloperYash/Knowledge-Representation-And-Insight-Generation',
-    link: '#',
+    link: 'https://github.com/devloperYash/Knowledge-Representation-And-Insight-Generation',
     badge: 'Intel Unnati',
     color: '#6366f1', // Indigo
     icon: Server
@@ -70,7 +70,7 @@ const projects = [
     description: 'Enterprise-grade recruitment platform backend features JWT stateless security, robust logging, customized exception handling, and full relational schemas.',
     stack: ['Java', 'Spring Boot', 'JWT Security', 'MySQL'],
     github: 'https://github.com/devloperYash/Job-Portal-Using-Spring-Boot',
-    link: '#',
+    link: 'https://github.com/devloperYash/Job-Portal-Using-Spring-Boot',
     badge: 'Backend Core',
     color: '#f472b6', // Pink
     icon: Database
@@ -130,9 +130,8 @@ export default function Projects() {
             return (
               <motion.div
                 key={proj.id}
-                className={`flip-card h-[420px] md:h-[480px] cursor-none ${
-                  isLarge ? 'lg:col-span-8' : 'lg:col-span-4'
-                }`}
+                className={`flip-card h-[420px] md:h-[480px] cursor-none ${isLarge ? 'lg:col-span-8' : 'lg:col-span-4'
+                  }`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -140,7 +139,7 @@ export default function Projects() {
                 data-cursor="view"
               >
                 <div className="flip-card-inner h-full w-full">
-                  
+
                   {/* FRONT SIDE */}
                   <div className="flip-card-front glass p-8 flex flex-col justify-between border border-white/[0.05] bg-surface/30">
                     <div className="flex justify-between items-start">
@@ -185,13 +184,14 @@ export default function Projects() {
                   <div className="flip-card-back glass p-8 flex flex-col justify-between border border-white/[0.08] bg-[#0c0c0e]">
                     <div className="flex justify-between items-center border-b border-white/[0.05] pb-4">
                       <h4 className="font-bold text-lg text-white">{proj.title}</h4>
-                      <div className="flex gap-3">
+                      <div className="flex gap-3" style={{ position: 'relative', zIndex: 10 }}>
                         <a
                           href={proj.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-white/40 hover:text-white transition-colors duration-300 pointer-events-auto"
+                          className="text-white/40 hover:text-white transition-colors duration-300 pointer-events-auto p-2 -m-2"
                           data-cursor="hover"
+                          onClick={(e) => e.stopPropagation()}
                         >
                           <Github size={18} />
                         </a>
@@ -200,8 +200,9 @@ export default function Projects() {
                             href={proj.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-white/40 hover:text-white transition-colors duration-300 pointer-events-auto"
+                            className="text-white/40 hover:text-white transition-colors duration-300 pointer-events-auto p-2 -m-2"
                             data-cursor="hover"
+                            onClick={(e) => e.stopPropagation()}
                           >
                             <ExternalLink size={18} />
                           </a>
@@ -213,7 +214,7 @@ export default function Projects() {
                       <p className="text-white/70 text-sm leading-relaxed mb-6 font-light">
                         {proj.description}
                       </p>
-                      
+
                       <div className="flex flex-wrap gap-2">
                         {proj.stack.map((st) => (
                           <span key={st} className="text-[11px] bg-white/[0.04] text-white/70 px-2 py-1 font-mono rounded border border-white/[0.02]">

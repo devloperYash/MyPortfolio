@@ -156,9 +156,10 @@ export default function Hero() {
         /* Letter hover and glitch */
         .char-hover-target {
           display: inline-block;
-          -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.5);
+          -webkit-text-fill-color: transparent;
+          -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.75);
           color: transparent;
-          text-shadow: 0 0 80px rgba(99, 102, 241, 0.3);
+          text-shadow: none;
           transition: filter 0.3s ease, -webkit-text-stroke 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
         }
         .char-hover-target:hover {
@@ -295,7 +296,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          <div className="flex overflow-hidden py-1">
+          <div className="flex overflow-hidden px-2 py-2">
             {"YASH".split("").map((char, index) => (
               <motion.span
                 key={index}
@@ -306,7 +307,7 @@ export default function Hero() {
               </motion.span>
             ))}
           </div>
-          <div className="flex overflow-hidden py-1">
+          <div className="flex overflow-hidden px-2 py-2">
             {"LAWANKAR".split("").map((char, index) => (
               <motion.span
                 key={index}

@@ -16,8 +16,8 @@ export default function CustomCursor() {
     const move = (e) => { mouseX.set(e.clientX); mouseY.set(e.clientY); };
     const handleOver = (e) => {
       const el = e.target;
-      if (el.closest('[data-cursor="view"]')) setCursorState('view');
-      else if (el.closest('a, button, [role="button"], input, textarea, [data-cursor="hover"]')) setCursorState('hover');
+      if (el.closest('a, button, [role="button"], input, textarea, [data-cursor="hover"]')) setCursorState('hover');
+      else if (el.closest('[data-cursor="view"]')) setCursorState('view');
       else setCursorState('default');
     };
     window.addEventListener('mousemove', move);
