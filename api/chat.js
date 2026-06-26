@@ -90,7 +90,12 @@ PERSONALITY:
     if (!response.ok) {
       const errorData = await response.text();
       console.error('Gemini API error:', errorData);
-      return res.status(500).json({ error: 'Failed to get AI response' });
+      try {
+        const parsedError = JSON.parse(errorData);
+        return res.status(500).json({ error: 'Failed to get AI response', details: parsedError });
+      } catch (e) {
+        return res.status(500).json({ error: 'Failed to get AI response', details: errorData });
+      }
     }
 
     const data = await response.json();
