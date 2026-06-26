@@ -1,5 +1,20 @@
 export default async function handler(req, res) {
-  // Only allow POST
+  // Support GET request with list=true to inspect available models
+  if (req.method === 'GET' && req.query && req.query.list === 'true') {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'API key not configured' });
+    }
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+      const data = await response.json();
+      return res.status(200).json(data);
+    } catch (err) {
+      return res.status(500).json({ error: 'Failed to list models', details: err.message });
+    }
+  }
+
+  // Only allow POST for chat
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
