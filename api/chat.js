@@ -22,8 +22,8 @@ export default async function handler(req, res) {
 ABOUT YASH LAWANKAR:
 - Computer Science Engineering student at PRMITR Badnera (Prof. Ram Meghe Institute of Technology & Research)
 - University: Sant Gadge Baba Amravati University (SGBAU)
-- Graduating: August 2026
-- CGPA: 8.72
+- Graduating: July 2026
+- CGPA: 8.89
 - From Amravati, Maharashtra, India
 - Passionate about Java backend development, AI/ML, and building scalable systems
 

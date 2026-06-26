@@ -24,7 +24,10 @@ export default function Contact() {
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({
           access_key: 'b3f7ca7b-55e8-4bdf-a187-e3e56ad6a6ed', // Web3Forms access key
           name: form.name,

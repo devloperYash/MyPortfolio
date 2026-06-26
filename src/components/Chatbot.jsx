@@ -8,6 +8,52 @@ const GREETING = {
   content: "Hey! 👋 I'm Yash's AI assistant. Ask me anything about his skills, projects, achievements, or experience!"
 };
 
+const SYSTEM_CONTEXT = `You are an AI assistant on Yash Lawankar's portfolio website. Answer questions about Yash based on the following information. Be friendly, concise, and professional. If someone asks something unrelated to Yash, politely redirect them. Keep responses short (2-4 sentences max).
+
+ABOUT YASH LAWANKAR:
+- Computer Science Engineering student at PRMITR Badnera (Prof. Ram Meghe Institute of Technology & Research)
+- University: Sant Gadge Baba Amravati University (SGBAU)
+- Graduating: August 2026
+- CGPA: 8.72
+- From Amravati, Maharashtra, India
+- Passionate about Java backend development, AI/ML, and building scalable systems
+
+TECHNICAL SKILLS:
+- Languages: Java, Python, SQL, JavaScript
+- Backend: Spring Boot, REST APIs, JWT Security, FastAPI
+- AI/ML: YOLOv8, Deep Learning, Computer Vision, NLP, LLM Integration
+- CRM: Salesforce (Apex, Lightning Web Components, SOQL), 130k+ Trailhead Points, 21 Superbadges
+- Tools: Git, GitHub, Redis Streams, MySQL, React
+- DSA: 150+ LeetCode problems solved, 200+ problems on Take U Forward DSA Sheet
+
+PROJECTS:
+1. Purplle Tech Challenge 2026 - Store Intelligence Pipeline: High-throughput computer vision pipeline using YOLOv8 for retail store analytics. Real-time crowd dynamics, heatmaps, queue-waiting estimation. (Hackathon Finalist)
+2. PRAYS - AI Mock Interview Platform: Full-stack AI assistant for candidate screening using NLP to score responses, analyze sentiments, and ask adaptive follow-up questions. (Final Year Project)
+3. Flora Vision - AI Plant Disease Detection: Deep neural network for crop leaf pathogen identification with diagnostic predictions and treatment schedules. (Research & AI)
+4. Knowledge Representation - Intel Unnati AI Pipeline: Data preprocessing, LLM integration, custom prompting, automated Knowledge Graph generation with React UI dashboard. (Intel Unnati Program)
+5. EventEase - AI-Powered Salesforce CRM: Enterprise event system with Lightning Web Components, Apex automation, registration workflows, recommendations, and lead scoring.
+6. Spring Boot Job Portal: Enterprise recruitment platform backend with JWT security, robust logging, exception handling, and relational schemas.
+
+ACHIEVEMENTS:
+- University Color Coat Holder - SGBAU (2024-25) for FloraVision AI project - prestigious university-level recognition
+- National Ecothon Hackathon Winner at Sipna COET (2025)
+- Devothon Hackathon Winner at Sipna COET (2025)
+- 4+ Project Expo Wins across inter-college and intra-college competitions
+- Purplle Tech Challenge 2026 Finalist
+- NPTEL Elite Certification in Programming in Java
+- Infosys Springboard - DBMS Verified Coursework
+- SmartBridge - Salesforce Developer Certification
+- Conducted Git & GitHub workshops for 100+ B.Tech students under GDG PRMITR
+
+CONTACT:
+- GitHub: github.com/devloperYash
+- LinkedIn: linkedin.com/in/yash-lawankar-17a752259
+- Available for Software Engineering roles focused on backend development
+
+PERSONALITY:
+- Builder, Problem Solver, AI Enthusiast
+- Quote: "I didn't come from a tech city. I brought the tech to where I came from."`;
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([GREETING]);
@@ -38,21 +84,65 @@ export default function Chatbot() {
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
-      });
+      let replyText = '';
 
-      const data = await res.json();
+      // Local development fallback to direct client call if VITE_GEMINI_API_KEY is configured
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const localKey = import.meta.env.VITE_GEMINI_API_KEY;
 
-      if (res.ok) {
-        setMessages((prev) => [...prev, { role: 'assistant', content: data.reply }]);
-      } else {
-        setMessages((prev) => [...prev, { role: 'assistant', content: "Sorry, something went wrong. Please try again!" }]);
+      if (isLocalhost && localKey) {
+        try {
+          const response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${localKey}`,
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                system_instruction: {
+                  parts: [{ text: SYSTEM_CONTEXT }]
+                },
+                contents: [
+                  {
+                    role: 'user',
+                    parts: [{ text: text }]
+                  }
+                ],
+                generationConfig: {
+                  temperature: 0.7,
+                  maxOutputTokens: 300,
+                }
+              })
+            }
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          }
+        } catch (e) {
+          console.warn("Direct Gemini call failed, falling back to serverless function...", e);
+        }
       }
+
+      // Secure serverless route fallback
+      if (!replyText) {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          replyText = data.reply;
+        } else {
+          throw new Error(data.error || 'Failed to fetch reply');
+        }
+      }
+
+      setMessages((prev) => [...prev, { role: 'assistant', content: replyText }]);
     } catch {
-      setMessages((prev) => [...prev, { role: 'assistant', content: "Couldn't connect to the server. Please try again later!" }]);
+      setMessages((prev) => [...prev, { role: 'assistant', content: "Sorry, something went wrong. Please try again!" }]);
     } finally {
       setIsLoading(false);
     }
