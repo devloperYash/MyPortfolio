@@ -78,9 +78,11 @@ PERSONALITY:
 - Builder, Problem Solver, AI Enthusiast
 - Quote: "I didn't come from a tech city. I brought the tech to where I came from."`;
 
+  const modelName = req.query?.model || req.body?.model || 'gemini-3.5-flash';
+
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
