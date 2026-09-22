@@ -101,7 +101,7 @@ export default function Hero() {
   const subtitleText = "Software Development Engineer";
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden bg-[#080808]">
+    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden bg-transparent">
       {/* ─── Styles injection ─────────────────── */}
       <style>{`
         /* Blurred Orbs floating around */
@@ -288,6 +288,7 @@ export default function Hero() {
       <div className="relative z-10 text-center px-4">
         {/* Name Text with character staggered entry + hover triggers + random glitch */}
         <motion.h1
+          aria-label="Yash Lawankar — Software Development Engineer"
           className={`font-black leading-[0.85] tracking-tighter select-none cursor-default flex flex-col items-center justify-center ${
             isGlitching ? 'hero-name-glitch' : ''
           }`}

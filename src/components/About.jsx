@@ -43,7 +43,7 @@ export default function About() {
   const words = BIO.split(' ');
 
   return (
-    <section id="about" className="relative py-24 md:py-36 min-h-screen overflow-hidden border-t border-white/[0.04] bg-[#080808]">
+    <section id="about" className="relative py-24 md:py-36 min-h-screen overflow-hidden border-t border-white/[0.04] bg-transparent">
       {/* ─── Background geometric shapes ─── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div 

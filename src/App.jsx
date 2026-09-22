@@ -415,40 +415,51 @@ export default function App() {
 
   return (
     <div
-      className={`min-h-screen bg-[#080808] text-white font-sans overflow-x-hidden relative ${glitch ? 'glitch-mode glitch-active' : ''
+      className={`min-h-screen text-white font-sans overflow-x-hidden relative ${glitch ? 'glitch-mode glitch-active' : ''
         }`}
     >
       {/* ─── GLOBAL BACKGROUND SYSTEM (Fixed Layers) ─── */}
 
       {/* Base background color */}
-      <div className="fixed inset-0 bg-[#080808] -z-30 pointer-events-none" />
+      <div className="fixed inset-0 bg-[#080808] z-0 pointer-events-none" />
+
+      {/* Fixed Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="fixed inset-0 w-full h-full object-cover z-[1] opacity-40 pointer-events-none filter contrast-110 brightness-90"
+      >
+        <source src="/bg2.mp4" type="video/mp4" />
+      </video>
 
       {/* Layer 0: Three.js Canvas (Particles + Shapes) */}
-      <div id="bg-layer-1" className="fixed inset-0 pointer-events-none z-0 overflow-hidden will-change-transform">
-        <canvas ref={canvasRef} className="w-full h-full block opacity-70" />
+      <div id="bg-layer-1" className="fixed inset-0 pointer-events-none z-[2] overflow-hidden will-change-transform">
+        <canvas ref={canvasRef} className="w-full h-full block opacity-60" />
       </div>
 
       {/* Layer 1: Aurora Background Layers */}
-      <div id="bg-layer-2" className="fixed inset-0 pointer-events-none overflow-hidden z-1 will-change-transform">
+      <div id="bg-layer-2" className="fixed inset-0 pointer-events-none overflow-hidden z-[3] will-change-transform">
         <div className="aurora-layer aurora-1" />
         <div className="aurora-layer aurora-2" />
         <div className="aurora-layer aurora-3" />
       </div>
 
       {/* Layer 2: 3D Grid Floor */}
-      <div className="grid-floor-3d z-2" />
+      <div className="grid-floor-3d z-[4]" />
 
       {/* Layer 3: Dot Grid Overlay */}
-      <div id="bg-layer-3" className="fixed inset-0 pointer-events-none z-3 dot-grid-overlay will-change-transform" />
+      <div id="bg-layer-3" className="fixed inset-0 pointer-events-none z-[5] dot-grid-overlay will-change-transform" />
 
       {/* Layer 4: Noise Grain Overlay */}
-      <div className="fixed inset-0 pointer-events-none z-4 noise-grain-overlay" />
+      <div className="fixed inset-0 pointer-events-none z-[6] noise-grain-overlay" />
 
       {/* Layer 5: Vignette Overlay */}
-      <div className="fixed inset-0 pointer-events-none z-5 vignette-overlay" />
+      <div className="fixed inset-0 pointer-events-none z-[7] vignette-overlay" />
 
       {/* Layer 6: Depth Fog */}
-      <div className="fixed bottom-0 left-0 right-0 h-[30vh] pointer-events-none z-6 bg-gradient-to-t from-[#080808] to-transparent" />
+      <div className="fixed bottom-0 left-0 right-0 h-[30vh] pointer-events-none z-[8] bg-gradient-to-t from-[#080808] to-transparent" />
 
       {/* Scanlines (visible during glitch) */}
       <div className="scanlines" />

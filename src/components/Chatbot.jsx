@@ -8,13 +8,20 @@ const GREETING = {
   content: "Hey! 👋 I'm Yash's AI assistant. Ask me anything about his skills, projects, achievements, or experience!"
 };
 
-const SYSTEM_CONTEXT = `You are an AI assistant on Yash Lawankar's portfolio website. Answer questions about Yash based on the following information. Be friendly, concise, and professional. If someone asks something unrelated to Yash, politely redirect them. Keep responses short (2-4 sentences max).
+const SYSTEM_CONTEXT = `You are an AI assistant on Yash Lawankar's portfolio website. Answer questions about Yash based on the following information. Be friendly, enthusiastic, professional, and confident.
+
+KEY INSTRUCTIONS:
+- Highlight Yash's technical strengths, problem-solving skills, and achievements clearly.
+- When asked why to hire Yash or why he is a great fit for Software Development Engineer (SDE) / Backend roles, provide 3 clear, compelling, structured reasons (e.g., 1. Strong Java & Spring Boot backend expertise with clean architecture; 2. Proven problem-solving ability with 350+ DSA problems solved across LeetCode & Take U Forward; 3. Track record of hackathon wins and production-grade AI/ML project implementations like Purplle Tech Challenge & PRAYS).
+- If asked about weaknesses, negative traits, or reasons not to hire him, answer constructively by framing them as active areas of growth and learning (e.g. continuous expansion of distributed cloud systems & system design expertise).
+- Keep responses complete, well-formatted, and concise (2-4 sentences or clear bullet points). NEVER cut off mid-sentence.
+- If someone asks something completely unrelated to Yash, politely redirect them back to Yash's portfolio.
 
 ABOUT YASH LAWANKAR:
 - Computer Science Engineering student at PRMITR Badnera (Prof. Ram Meghe Institute of Technology & Research)
 - University: Sant Gadge Baba Amravati University (SGBAU)
-- Graduating: August 2026
-- CGPA: 8.72
+- Graduating: July 2026
+- CGPA: 8.89
 - From Amravati, Maharashtra, India
 - Passionate about Java backend development, AI/ML, and building scalable systems
 
@@ -29,7 +36,7 @@ TECHNICAL SKILLS:
 PROJECTS:
 1. Purplle Tech Challenge 2026 - Store Intelligence Pipeline: High-throughput computer vision pipeline using YOLOv8 for retail store analytics. Real-time crowd dynamics, heatmaps, queue-waiting estimation. (Hackathon Finalist)
 2. PRAYS - AI Mock Interview Platform: Full-stack AI assistant for candidate screening using NLP to score responses, analyze sentiments, and ask adaptive follow-up questions. (Final Year Project)
-3. Flora Vision - AI Plant Disease Detection: Deep neural network for crop leaf pathogen identification with diagnostic predictions and treatment schedules. (Research & AI)
+3. Flora Vision - AI Plant Disease Detection: Deep neural network for crop leaf pathogen identification with diagnostic predictions and treatment schedules. (Research & AI - University Color Coat Winner)
 4. Knowledge Representation - Intel Unnati AI Pipeline: Data preprocessing, LLM integration, custom prompting, automated Knowledge Graph generation with React UI dashboard. (Intel Unnati Program)
 5. EventEase - AI-Powered Salesforce CRM: Enterprise event system with Lightning Web Components, Apex automation, registration workflows, recommendations, and lead scoring.
 6. Spring Boot Job Portal: Enterprise recruitment platform backend with JWT security, robust logging, exception handling, and relational schemas.
@@ -79,7 +86,8 @@ export default function Chatbot() {
     if (!text || isLoading) return;
 
     const userMsg = { role: 'user', content: text };
-    setMessages((prev) => [...prev, userMsg]);
+    const updatedMessages = [...messages, userMsg];
+    setMessages(updatedMessages);
     setInput('');
     setIsLoading(true);
 
@@ -92,6 +100,13 @@ export default function Chatbot() {
 
       if (isLocalhost && localKey) {
         try {
+          const formattedContents = updatedMessages
+            .filter((m, i) => !(i === 0 && m.role === 'assistant'))
+            .map((m) => ({
+              role: m.role === 'assistant' ? 'model' : 'user',
+              parts: [{ text: m.content }]
+            }));
+
           const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${localKey}`,
             {
@@ -101,15 +116,10 @@ export default function Chatbot() {
                 system_instruction: {
                   parts: [{ text: SYSTEM_CONTEXT }]
                 },
-                contents: [
-                  {
-                    role: 'user',
-                    parts: [{ text: text }]
-                  }
-                ],
+                contents: formattedContents,
                 generationConfig: {
                   temperature: 0.7,
-                  maxOutputTokens: 300,
+                  maxOutputTokens: 1000,
                 }
               })
             }
@@ -129,11 +139,13 @@ export default function Chatbot() {
         const res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text }),
+          body: JSON.stringify({ message: text, messages: updatedMessages }),
         });
 
         const data = await res.json();
-        if (res.ok) {
+        if (data.reply) {
+          replyText = data.reply;
+        } else if (res.ok) {
           replyText = data.reply;
         } else {
           throw new Error(data.error || 'Failed to fetch reply');
@@ -141,8 +153,8 @@ export default function Chatbot() {
       }
 
       setMessages((prev) => [...prev, { role: 'assistant', content: replyText }]);
-    } catch {
-      setMessages((prev) => [...prev, { role: 'assistant', content: "Sorry, something went wrong. Please try again!" }]);
+    } catch (err) {
+      setMessages((prev) => [...prev, { role: 'assistant', content: err?.message || "Sorry, something went wrong. Please try again!" }]);
     } finally {
       setIsLoading(false);
     }
@@ -230,7 +242,7 @@ export default function Chatbot() {
 
                   {/* Bubble */}
                   <div
-                    className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[13px] leading-relaxed ${
+                    className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[13px] leading-relaxed whitespace-pre-wrap ${
                       msg.role === 'user'
                         ? 'bg-[#6366f1]/20 text-white/90 rounded-br-md'
                         : 'bg-white/[0.04] text-white/70 rounded-bl-md border border-white/[0.04]'

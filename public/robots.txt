@@ -1,0 +1,9 @@
+# Robots.txt for Yash Lawankar Portfolio
+# https://yashlawankar.vercel.app
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://yashlawankar.vercel.app/sitemap.xml
