@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!assets/|google2eb2ea8fc6d90fb1.html|robots.txt|sitemap.xml|favicon.svg|icons.svg|og-image.jpg|bg-video.mp4).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
