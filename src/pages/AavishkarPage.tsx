@@ -193,7 +193,21 @@ export const AavishkarPage: React.FC = () => {
   const [modalImg, setModalImg] = useState<{ src: string; alt: string; caption?: string } | null>(null);
   const [activeNewsIdx, setActiveNewsIdx] = useState(0);
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+
     const page = pageRef.current;
     if (!page) return;
 
@@ -300,26 +314,31 @@ export const AavishkarPage: React.FC = () => {
       />
 
   {/* ━━━ TOP NAV BAR ━━━ */ }
-  < nav className = "sticky top-0 z-40 w-full px-5 sm:px-10 lg:px-16 py-3.5 backdrop-blur-md bg-black/75 border-b border-white/[0.06] flex items-center justify-between" >
-    <Link
+      <nav className="sticky top-0 z-40 w-full px-5 sm:px-10 lg:px-16 py-3.5 backdrop-blur-md bg-black/75 border-b border-white/[0.06] flex items-center justify-between">
+        <Link
           to="/"
-className = "inline-flex items-center gap-2 text-xs font-mono text-white/50 hover:text-[#D9A441] transition-colors group"
-  >
-  <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-    <span>Back to Portfolio </span>
-      </Link>
+          onClick={() => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+          }}
+          className="inline-flex items-center gap-2 text-xs font-mono text-white/50 hover:text-[#D9A441] transition-colors group"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+          <span>Back to Portfolio</span>
+        </Link>
 
-      < div className = "hidden sm:flex items-center gap-4 text-[11px] font-mono text-white/40" >
-        <a href="#tournament" className = "hover:text-white transition-colors" > Format </a>
-          < span className = "text-white/15" >•</span>
-            < a href = "#timeline" className = "hover:text-white transition-colors" > Timeline </a>
-              < span className = "text-white/15" >•</span>
-                < a href = "#press" className = "hover:text-[#D9A441] text-[#D9A441]/80 transition-colors" > Newspaper Coverage </a>
-                  < span className = "text-white/15" >•</span>
-                    < a href = "#project" className = "hover:text-white transition-colors" > Flora Vision AI </a>
-                      < span className = "text-white/15" >•</span>
-                        < a href = "#teammate" className = "hover:text-white transition-colors" > Gauri Garole </a>
-                          </div>
+      <div className="hidden sm:flex items-center gap-4 text-[11px] font-mono text-white/40">
+        <a href="#tournament" onClick={(e) => handleAnchorClick(e, 'tournament')} className="hover:text-white transition-colors">Format</a>
+        <span className="text-white/15">•</span>
+        <a href="#timeline" onClick={(e) => handleAnchorClick(e, 'timeline')} className="hover:text-white transition-colors">Timeline</a>
+        <span className="text-white/15">•</span>
+        <a href="#press" onClick={(e) => handleAnchorClick(e, 'press')} className="hover:text-white transition-colors">Newspaper Coverage</a>
+        <span className="text-white/15">•</span>
+        <a href="#project" onClick={(e) => handleAnchorClick(e, 'project')} className="hover:text-white transition-colors">Flora Vision AI</a>
+        <span className="text-white/15">•</span>
+        <a href="#teammate" onClick={(e) => handleAnchorClick(e, 'teammate')} className="hover:text-white transition-colors">Gauri Garole</a>
+      </div>
 
                           < div className = "flex items-center gap-2" >
                             <span className="w-2 h-2 rounded-full bg-[#D9A441] shadow-[0_0_8px_#D9A441]" />
@@ -328,53 +347,139 @@ className = "inline-flex items-center gap-2 text-xs font-mono text-white/50 hove
                                 </nav>
 
 {/* ━━━ HERO HEADER ━━━ */ }
-<header className="relative z-10 w-full px-6 sm:px-10 lg:px-20 pt-12 sm:pt-16 pb-20 border-b border-white/[0.06] overflow-hidden" >
-  {/* Glow ambient */ }
-  < div className = "absolute top-0 right-1/4 w-[450px] h-[350px] bg-[#D9A441]/[0.05] rounded-full blur-3xl pointer-events-none" />
-    <div className="absolute bottom-0 left-1/4 w-[350px] h-[250px] bg-[#4C7EFF]/[0.03] rounded-full blur-3xl pointer-events-none" />
+      {/* ━━━ HERO HEADER ━━━ */}
+      <header className="relative z-10 w-full px-6 sm:px-10 lg:px-20 pt-12 sm:pt-16 pb-20 border-b border-white/[0.06] overflow-hidden">
+        {/* Glow ambient */}
+        <div className="absolute top-0 right-1/4 w-[450px] h-[350px] bg-[#D9A441]/[0.05] rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-[350px] h-[250px] bg-[#4C7EFF]/[0.03] rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-4xl" >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D9A441]/10 border border-[#D9A441]/30 mb-6" >
-          <Sparkles className="w-3.5 h-3.5 text-[#D9A441]" />
-            <span className="text-[11px] font-mono tracking-widest text-[#D9A441] uppercase font-semibold" >
-              The Complete Aavishkar Journey
-                </span>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Heading, intro, metrics */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D9A441]/10 border border-[#D9A441]/30 mb-6 self-start">
+              <Sparkles className="w-3.5 h-3.5 text-[#D9A441]" />
+              <span className="text-[11px] font-mono tracking-widest text-[#D9A441] uppercase font-semibold">
+                The Complete Aavishkar Journey
+              </span>
+            </div>
+
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08]">
+              Winners Compete <br />
+              With Winners <span className="text-[#D9A441]">.</span>
+            </h1>
+
+            <p className="text-base sm:text-xl text-white/70 font-sans mt-6 leading-relaxed max-w-2xl">
+              From the college laboratory at PRMITR Badnera to the grand stage at DBATU Lonere — surviving 4 elimination tiers and 47 university champions to claim <span className="text-white font-semibold">State Runner-Up in Maharashtra</span>.
+            </p>
+
+            {/* Quick Metrics Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-10">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block">Elimination Stages</span>
+                <span className="font-display text-2xl sm:text-3xl font-bold text-white mt-1 block">4 Rounds</span>
+                <span className="text-[11px] font-mono text-[#D9A441] mt-0.5 block">College to State</span>
+              </div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block">State Convention</span>
+                <span className="font-display text-2xl sm:text-3xl font-bold text-white mt-1 block">47 Teams</span>
+                <span className="text-[11px] font-mono text-white/50 mt-0.5 block">All University Winners</span>
+              </div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block">Poster Elimination</span>
+                <span className="font-display text-2xl sm:text-3xl font-bold text-white mt-1 block">Top 8</span>
+                <span className="text-[11px] font-mono text-[#D9A441] mt-0.5 block">Selected for Podium</span>
+              </div>
+              <div className="p-4 rounded-xl bg-[#D9A441]/[0.06] border border-[#D9A441]/30">
+                <span className="text-[10px] font-mono text-[#D9A441] uppercase tracking-widest block">Final Standing</span>
+                <span className="font-display text-2xl sm:text-3xl font-bold text-white mt-1 block">🥈 2nd Place</span>
+                <span className="text-[11px] font-mono text-[#D9A441] mt-0.5 block">Runner-Up in Maharashtra</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Featured Newspaper Cutting */}
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center mt-6 lg:mt-0">
+            <div className="relative w-full max-w-md group">
+              {/* Glow ambient behind the card */}
+              <div className="absolute -inset-2 bg-gradient-to-tr from-[#D9A441]/25 via-[#D9A441]/10 to-[#4C7EFF]/20 rounded-3xl blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              {/* Newspaper cutting card container */}
+              <div
+                onClick={() =>
+                  setModalImg({
+                    src: news1,
+                    alt: 'राज्यस्तरीय आविष्कार स्पर्धेत यश लवणकर यांची निवड',
+                    caption: 'Tarun Bharat · संत गाडगे बाबा अमरावती विद्यापीठातर्फे (SGBAU) राज्यस्तरीय आविष्कार स्पर्धेसाठी निवड.',
+                  })
+                }
+                className="relative rounded-2xl bg-[#0c0d12] border border-white/15 p-4 sm:p-5 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#D9A441]/70 hover:scale-[1.02] hover:-rotate-1"
+              >
+                {/* Card Header */}
+                <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.08]">
+                  <div className="flex items-center gap-2">
+                    <span className="p-1.5 rounded-lg bg-[#D9A441]/10 text-[#D9A441] border border-[#D9A441]/30">
+                      <Newspaper className="w-3.5 h-3.5" />
+                    </span>
+                    <div>
+                      <span className="text-xs font-mono font-bold text-white tracking-wide block">
+                        Tarun Bharat
+                      </span>
+                      <span className="text-[10px] font-mono text-[#D9A441] block">
+                        Leading Marathi Daily
+                      </span>
+                    </div>
+                  </div>
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-medium text-[#D9A441] bg-[#D9A441]/10 border border-[#D9A441]/30">
+                    Press Spotlight
+                  </span>
                 </div>
 
-                < h1 className = "font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08]" >
-                  Winners Compete < br />
-                    With Winners < span className = "text-[#D9A441]" >.</span>
-                      </h1>
+                {/* Newspaper Image with Click to Zoom */}
+                <div className="relative rounded-xl overflow-hidden bg-black border border-white/10 aspect-[4/3] flex items-center justify-center group/img">
+                  <img
+                    src={news1}
+                    alt="राज्यस्तरीय आविष्कार स्पर्धेत यश लवणकर यांची निवड - Tarun Bharat"
+                    className="w-full h-full object-cover object-top filter brightness-[0.92] contrast-[1.05] group-hover/img:scale-105 group-hover/img:brightness-100 transition-all duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
 
-                      < p className = "text-base sm:text-xl text-white/70 font-sans mt-6 leading-relaxed max-w-2xl" >
-                        From the college laboratory at PRMITR Badnera to the grand stage at DBATU Lonere — surviving 4 elimination tiers and 47 university champions to claim < span className = "text-white font-semibold" > State Runner - Up in Maharashtra </span>.
-                          </p>
-
-{/* Quick Metrics Bar */ }
-<div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-10 max-w-3xl" >
-  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]" >
-    <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block" > Elimination Stages </span>
-      < span className = "font-display text-2xl sm:text-3xl font-bold text-white mt-1 block" > 4 Rounds </span>
-        < span className = "text-[11px] font-mono text-[#D9A441] mt-0.5 block" > College to State </span>
-          </div>
-          < div className = "p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]" >
-            <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block" > State Convention </span>
-              < span className = "font-display text-2xl sm:text-3xl font-bold text-white mt-1 block" > 47 Teams </span>
-                < span className = "text-[11px] font-mono text-white/50 mt-0.5 block" > All University Winners </span>
+                  {/* Hover Inspect badge */}
+                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-black/85 backdrop-blur-md border border-white/20 text-[#D9A441] text-[10px] font-mono flex items-center gap-1.5 shadow-lg group-hover:border-[#D9A441]/50 transition-colors">
+                    <ZoomIn className="w-3.5 h-3.5 text-[#D9A441]" />
+                    <span>View Clipping</span>
                   </div>
-                  < div className = "p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]" >
-                    <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block" > Poster Elimination </span>
-                      < span className = "font-display text-2xl sm:text-3xl font-bold text-white mt-1 block" > Top 8 </span>
-                        < span className = "text-[11px] font-mono text-[#D9A441] mt-0.5 block" > Selected for Podium </span>
-                          </div>
-                          < div className = "p-4 rounded-xl bg-[#D9A441]/[0.06] border border-[#D9A441]/30" >
-                          <span className= "text-[10px] font-mono text-[#D9A441] uppercase tracking-widest block" > Final Standing </span>
-                            < span className = "font-display text-2xl sm:text-3xl font-bold text-white mt-1 block" >🥈 2nd Place </span>
-                              < span className = "text-[11px] font-mono text-[#D9A441] mt-0.5 block" > Runner - Up in Maharashtra </span>
-                                </div>
-                                </div>
-                                </div>
-                                </header>
+                </div>
+
+                {/* Headline & Description */}
+                <div className="mt-3.5">
+                  <h3 className="font-display text-sm sm:text-base font-bold text-white tracking-tight leading-snug line-clamp-2">
+                    राज्यस्तरीय आविष्कार स्पर्धेत यश लवणकर यांची निवड
+                  </h3>
+                  <p className="text-xs text-white/50 font-sans mt-1 leading-relaxed line-clamp-2">
+                    संत गाडगे बाबा अमरावती विद्यापीठातर्फे (SGBAU) राज्यस्तरीय आंतरविद्यापीठ संशोधन स्पर्धेसाठी निवड.
+                  </p>
+
+                  {/* Footer link to jump to all press clippings */}
+                  <div className="mt-3 pt-2.5 border-t border-white/[0.06] flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-white/35">CLICK TO ENLARGE</span>
+                    <a
+                      href="#press"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAnchorClick(e, 'press');
+                      }}
+                      className="text-[11px] font-mono text-[#D9A441] hover:text-[#e4b356] transition-colors flex items-center gap-1 group/btn"
+                    >
+                      <span>All 5 Clippings</span>
+                      <span className="group-hover/btn:translate-x-0.5 transition-transform">↓</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
 
 {/* ━━━ HOW AAVISHKAR WORKS — TOURNAMENT FORMAT ━━━ */ }
 <section id="tournament" className = "relative z-10 px-6 sm:px-10 lg:px-20 py-16 sm:py-20 border-b border-white/[0.06] bg-[#07090e]" >

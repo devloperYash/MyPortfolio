@@ -133,6 +133,11 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={item.id}
                     to={item.href}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                      document.documentElement.scrollTop = 0;
+                      document.body.scrollTop = 0;
+                    }}
                     className="relative px-3.5 py-1.5 rounded-full text-xs font-mono text-white/60 hover:text-white transition-all flex items-center gap-1.5 group"
                   >
                     <span>{item.label}</span>
@@ -220,7 +225,12 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={item.id}
                     to={item.href}
-                    onClick={() => setIsMobileOpen(false)}
+                    onClick={() => {
+                      setIsMobileOpen(false);
+                      window.scrollTo(0, 0);
+                      document.documentElement.scrollTop = 0;
+                      document.body.scrollTop = 0;
+                    }}
                     className="flex items-center justify-between py-3 border-b border-white/[0.06] group"
                   >
                     <div className="flex items-center gap-3">

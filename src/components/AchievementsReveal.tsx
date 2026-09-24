@@ -399,6 +399,11 @@ export const AchievementsReveal: React.FC = () => {
                   {item.isAavishkar ? (
                     <Link
                       to="/aavishkar"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        document.documentElement.scrollTop = 0;
+                        document.body.scrollTop = 0;
+                      }}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#D9A441] hover:bg-[#e4b356] text-black font-mono font-semibold text-xs transition-all shadow-[0_2px_14px_rgba(217,164,65,0.3)] hover:shadow-[0_2px_22px_rgba(217,164,65,0.5)] hover:scale-[1.02]"
                     >
                       <span>Case Study</span>

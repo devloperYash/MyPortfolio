@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,8 +15,37 @@ import { Footer } from './components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    } else {
+      const el = document.querySelector(hash);
+      if (el) {
+        el.scrollIntoView();
+      }
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
+
 function Portfolio() {
   useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -24,13 +53,23 @@ function Portfolio() {
       smoothWheel: true,
     });
 
+    lenis.scrollTo(0, { immediate: true });
+
     lenis.on('scroll', ScrollTrigger.update);
 
     const tick = (time: number) => { lenis.raf(time * 1000); };
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
-    return () => { gsap.ticker.remove(tick); lenis.destroy(); };
+    const rafId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      gsap.ticker.remove(tick);
+      lenis.destroy();
+    };
   }, []);
 
   return (
@@ -54,6 +93,10 @@ function Portfolio() {
 /* Aavishkar page with its own Lenis instance */
 function AavishkarWithLenis() {
   useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -61,13 +104,23 @@ function AavishkarWithLenis() {
       smoothWheel: true,
     });
 
+    lenis.scrollTo(0, { immediate: true });
+
     lenis.on('scroll', ScrollTrigger.update);
 
     const tick = (time: number) => { lenis.raf(time * 1000); };
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
-    return () => { gsap.ticker.remove(tick); lenis.destroy(); };
+    const rafId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      gsap.ticker.remove(tick);
+      lenis.destroy();
+    };
   }, []);
 
   return <AavishkarPage />;
@@ -76,6 +129,7 @@ function AavishkarWithLenis() {
 export function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/aavishkar" element={<AavishkarWithLenis />} />
