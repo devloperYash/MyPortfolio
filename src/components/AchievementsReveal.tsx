@@ -14,6 +14,7 @@ import {
   ExternalLink,
   Eye,
   Sparkles,
+  Play,
 } from 'lucide-react';
 
 import githubWorkshop from '../assets/achievements/github workshop.jpg';
@@ -397,18 +398,30 @@ export const AchievementsReveal: React.FC = () => {
 
                 <div className="mt-3 pt-2.5 border-t border-white/[0.05] flex items-center justify-between">
                   {item.isAavishkar ? (
-                    <Link
-                      to="/aavishkar"
-                      onClick={() => {
-                        window.scrollTo(0, 0);
-                        document.documentElement.scrollTop = 0;
-                        document.body.scrollTop = 0;
-                      }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#D9A441] hover:bg-[#e4b356] text-black font-mono font-semibold text-xs transition-all shadow-[0_2px_14px_rgba(217,164,65,0.3)] hover:shadow-[0_2px_22px_rgba(217,164,65,0.5)] hover:scale-[1.02]"
-                    >
-                      <span>Case Study</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Link>
+                    <div className="flex items-center gap-2">
+                      <Link
+                        to="/aavishkar"
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                          document.documentElement.scrollTop = 0;
+                          document.body.scrollTop = 0;
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#D9A441] hover:bg-[#e4b356] text-black font-mono font-semibold text-xs transition-all shadow-[0_2px_14px_rgba(217,164,65,0.3)] hover:shadow-[0_2px_22px_rgba(217,164,65,0.5)] hover:scale-[1.02]"
+                      >
+                        <span>Case Study</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                      <a
+                        href="https://drive.google.com/file/d/13WUYGxPct7PhA6W_8Sl8TqGqQQwUKz9D/view"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/10 border border-white/10 hover:border-[#D9A441]/50 text-white font-mono text-xs transition-all group/vid"
+                        title="Watch Flora Vision AI Demo Video"
+                      >
+                        <Play className="w-3 h-3 text-[#D9A441] fill-[#D9A441] group-hover/vid:scale-110 transition-transform" />
+                        <span>Video Demo</span>
+                      </a>
+                    </div>
                   ) : (
                     <button
                       onClick={() => setModalData({ title: item.title, subtitle: item.context, image: item.image })}

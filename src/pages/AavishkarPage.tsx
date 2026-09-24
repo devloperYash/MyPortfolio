@@ -20,7 +20,15 @@ import {
   CheckCircle2,
   Layers,
   ZoomIn,
+  Play,
+  Cpu,
+  Bot,
+  CloudSun,
+  Volume2,
+  ArrowUp,
+  Briefcase,
 } from 'lucide-react';
+import { SOCIAL_LINKS } from '../constants/links';
 
 // Aavishkar images
 import collegePic from '../assets/achievements/aavishkar college pic.jpg';
@@ -372,6 +380,29 @@ export const AavishkarPage: React.FC = () => {
               From the college laboratory at PRMITR Badnera to the grand stage at DBATU Lonere — surviving 4 elimination tiers and 47 university champions to claim <span className="text-white font-semibold">State Runner-Up in Maharashtra</span>.
             </p>
 
+            {/* Quick Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 mt-6">
+              <a
+                href="https://drive.google.com/file/d/13WUYGxPct7PhA6W_8Sl8TqGqQQwUKz9D/view"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#D9A441] hover:bg-[#e4b356] text-black font-mono font-bold text-xs transition-all shadow-[0_0_20px_rgba(217,164,65,0.3)] hover:scale-[1.02]"
+              >
+                <Play className="w-3.5 h-3.5 fill-black" />
+                <span>Watch Project Video Demo</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href="#project"
+                onClick={(e) => handleAnchorClick(e, 'project')}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-[#D9A441]/50 text-white font-mono text-xs transition-all"
+              >
+                <Leaf className="w-3.5 h-3.5 text-[#D9A441]" />
+                <span>Explore Flora Vision AI</span>
+              </a>
+            </div>
+
             {/* Quick Metrics Bar */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-10">
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
@@ -391,7 +422,7 @@ export const AavishkarPage: React.FC = () => {
               </div>
               <div className="p-4 rounded-xl bg-[#D9A441]/[0.06] border border-[#D9A441]/30">
                 <span className="text-[10px] font-mono text-[#D9A441] uppercase tracking-widest block">Final Standing</span>
-                <span className="font-display text-2xl sm:text-3xl font-bold text-white mt-1 block">🥈 2nd Place</span>
+                <span className="font-display text-2xl sm:text-3xl font-bold text-white mt-1 block">Achieve Top 8 </span>
                 <span className="text-[11px] font-mono text-[#D9A441] mt-0.5 block">Runner-Up in Maharashtra</span>
               </div>
             </div>
@@ -858,142 +889,435 @@ loading = "lazy"
   </div>
   </section>
 
-{/* ━━━ FLORA VISION AI — THE RESEARCH PROJECT ━━━ */ }
-<section id="project" className = "relative z-10 px-6 sm:px-10 lg:px-20 py-16 sm:py-24 border-t border-white/[0.06] bg-[#090b10]" >
-  <div className="reveal-section max-w-4xl mx-auto" >
-    <div className="rounded-2xl border border-[#D9A441]/30 bg-[#0c0e16] p-7 sm:p-10 relative overflow-hidden shadow-2xl" >
-      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#D9A441] to-transparent" />
+      {/* ━━━ FLORA VISION AI — SYSTEM ARCHITECTURE & RESEARCH ━━━ */}
+      <section id="project" className="relative z-10 px-6 sm:px-10 lg:px-20 py-16 sm:py-20 border-t border-white/[0.08] bg-black">
+        <div className="reveal-section max-w-5xl mx-auto">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/[0.08]">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D9A441]/10 border border-[#D9A441]/25 text-[#D9A441] text-[11px] font-mono tracking-widest uppercase font-semibold mb-3">
+                <Leaf className="w-3.5 h-3.5 text-[#D9A441]" />
+                <span>State Innovation · Research Project</span>
+              </div>
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                  Flora Vision AI
+                </h2>
+                <span className="text-xs sm:text-sm font-mono text-white/40">
+                  (also known as Eco Vision AI)
+                </span>
+              </div>
+              <p className="text-sm sm:text-base text-white/70 font-sans mt-3 max-w-2xl leading-relaxed">
+                An intelligent agricultural assistant empowering farmers with real-time leaf disease detection, Gemini 2.5 Flash multimodal verification, agronomic chatbot advisory, and localized weather insights.
+              </p>
+            </div>
 
-        <div className="flex items-center gap-2 mb-4" >
-          <Leaf className="w-4 h-4 text-[#D9A441]" />
-            <span className="text-[11px] font-mono tracking-widest text-[#D9A441] uppercase" > The Award - Winning Project </span>
+            {/* Actions: Video Demo + GitHub */}
+            <div className="flex items-center gap-3 shrink-0">
+              <a
+                href="https://drive.google.com/file/d/13WUYGxPct7PhA6W_8Sl8TqGqQQwUKz9D/view"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#D9A441] hover:bg-[#e4b356] text-black font-mono font-bold text-xs transition-all shadow-[0_0_20px_rgba(217,164,65,0.3)] hover:scale-[1.02]"
+              >
+                <Play className="w-3.5 h-3.5 fill-black" />
+                <span>Watch Video Demo</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href="https://github.com/devloperYash/Flora-Vision-Ai"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-[#D9A441]/50 text-white font-mono text-xs transition-all"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white/80">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </svg>
+                <span>GitHub</span>
+                <ExternalLink className="w-3 h-3 text-white/40" />
+              </a>
+            </div>
+          </div>
+
+          {/* Pipeline Flow Strip */}
+          <div className="mt-8 py-5 px-5 sm:px-6 rounded-2xl bg-[#09090b] border border-white/[0.08]">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06]">
+              <span className="text-[10px] font-mono tracking-widest text-[#D9A441] uppercase font-semibold">
+                Inference &amp; Diagnostic Pipeline
+              </span>
+              <span className="text-[10px] font-mono text-white/30 hidden sm:inline">
+                End-to-End Execution Flow
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { num: '01', title: 'Leaf Image Upload', detail: 'Farmer captures leaf via Streamlit UI or field camera' },
+                { num: '02', title: 'TensorFlow CNN', detail: 'Custom deep neural net classifies species & flags disease' },
+                { num: '03', title: 'Gemini 2.5 Flash', detail: 'Multimodal AI cross-verifies symptoms & generates cure' },
+                { num: '04', title: 'Voice & Advisory', detail: 'Interactive Flora chatbot reads aloud via pyttsx3 TTS' },
+              ].map((step) => (
+                <div key={step.num} className="relative flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="text-xs font-mono font-bold text-[#D9A441]">{step.num}</span>
+                      <span className="text-xs font-semibold text-white tracking-tight">{step.title}</span>
+                    </div>
+                    <p className="text-[11px] text-white/50 font-sans leading-relaxed">
+                      {step.detail}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 2-Column Bento Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
+            {/* Left 7 Columns: Core Capabilities */}
+            <div className="lg:col-span-7 space-y-3">
+              <span className="text-[10px] font-mono tracking-widest text-[#D9A441] uppercase font-semibold block mb-2">
+                Core Capabilities
+              </span>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="p-4 rounded-xl bg-[#08080a] border border-white/[0.07] hover:border-[#D9A441]/30 transition-colors">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Cpu className="w-3.5 h-3.5 text-[#D9A441]" />
+                    <span className="text-xs font-mono font-bold text-white">Plant Disease Detection</span>
+                  </div>
+                  <p className="text-[11px] text-white/50 leading-relaxed font-sans">
+                    Custom-trained TensorFlow/Keras neural model predicts pathological anomalies from leaf image uploads in real time.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-[#08080a] border border-white/[0.07] hover:border-[#D9A441]/30 transition-colors">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#D9A441]" />
+                    <span className="text-xs font-mono font-bold text-white">Gemini 2.5 Flash</span>
+                  </div>
+                  <p className="text-[11px] text-white/50 leading-relaxed font-sans">
+                    Multimodal generative AI validates image fidelity, double-checks pathology, and generates actionable treatment plans.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-[#08080a] border border-white/[0.07] hover:border-[#D9A441]/30 transition-colors">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Bot className="w-3.5 h-3.5 text-[#D9A441]" />
+                    <span className="text-xs font-mono font-bold text-white">Chat with Flora</span>
+                  </div>
+                  <p className="text-[11px] text-white/50 leading-relaxed font-sans">
+                    Specialized agricultural AI chatbot answering follow-ups on botanical care, pesticide dosages, and preventive measures.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-[#08080a] border border-white/[0.07] hover:border-[#D9A441]/30 transition-colors">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <CloudSun className="w-3.5 h-3.5 text-[#D9A441]" />
+                    <span className="text-xs font-mono font-bold text-white">Real-Time Weather</span>
+                  </div>
+                  <p className="text-[11px] text-white/50 leading-relaxed font-sans">
+                    Location-aware climate analytics via Geocoder to assist farmers in timing irrigation, fertilization, and harvesting.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-[#08080a] border border-white/[0.07] hover:border-[#D9A441]/30 transition-colors">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Leaf className="w-3.5 h-3.5 text-[#D9A441]" />
+                    <span className="text-xs font-mono font-bold text-white">Soil &amp; Crop Advisory</span>
+                  </div>
+                  <p className="text-[11px] text-white/50 leading-relaxed font-sans">
+                    Intelligent recommendations tailored to specific regional soil types, microclimates, and agricultural zones.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-[#08080a] border border-white/[0.07] hover:border-[#D9A441]/30 transition-colors">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Volume2 className="w-3.5 h-3.5 text-[#D9A441]" />
+                    <span className="text-xs font-mono font-bold text-white">Offline TTS Engine</span>
+                  </div>
+                  <p className="text-[11px] text-white/50 leading-relaxed font-sans">
+                    Built-in pyttsx3 text-to-speech reads out diagnoses and advice aloud, ensuring complete accessibility directly in the fields.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right 5 Columns: Video Showcase & Tech Specs */}
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+              {/* Video Showcase Card */}
+              <div className="p-5 rounded-2xl bg-[#09090c] border border-white/[0.08] relative overflow-hidden group">
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D9A441]/50 to-transparent" />
+                <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-white/[0.06]">
+                  <span className="text-[10px] font-mono text-[#D9A441] uppercase tracking-wider font-semibold">
+                    Live Video Walkthrough
+                  </span>
+                  <span className="text-[10px] font-mono text-white/30">Google Drive HD</span>
+                </div>
+
+                <p className="text-xs text-white/70 font-sans leading-relaxed mb-4">
+                  Full demonstration of leaf disease diagnosis, Gemini AI multimodal reasoning, live chatbot consultation, and audio synthesis.
+                </p>
+
+                <a
+                  href="https://drive.google.com/file/d/13WUYGxPct7PhA6W_8Sl8TqGqQQwUKz9D/view"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#D9A441] hover:bg-[#e4b356] text-black font-mono font-bold text-xs transition-all shadow-[0_0_20px_rgba(217,164,65,0.25)] hover:scale-[1.01]"
+                >
+                  <Play className="w-4 h-4 fill-black" />
+                  <span>Open Video Demonstration</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
 
-              < h3 className = "font-display text-2xl sm:text-4xl font-extrabold text-white tracking-tight" >
-                Flora Vision AI < span className = "text-[#D9A441]" >.</span>
-                  </h3>
-
-                  < p className = "text-sm sm:text-base text-white/70 font-sans mt-4 leading-relaxed" >
-                    Flora Vision AI was engineered with a single urgent mission: <strong className="text-white" > giving farmers a reliable, intelligent helping hand right in the field </strong>. In rural Vidarbha and across Maharashtra, agricultural distress frequently stems from delayed crop disease diagnosis and inaccessible agronomists.
-                      </p>
-
-                      < p className = "text-sm sm:text-base text-white/70 font-sans mt-3 leading-relaxed" >
-                        Using deep convolutional neural networks optimized for low - compute mobile inference, Flora Vision AI allows a farmer to point a smartphone camera at an infected leaf and immediately receive disease classification, severity metrics, and scientifically verified organic and chemical treatment advisories — even in areas with spotty cellular connectivity.
-            </p>
-
-                          < div className = "grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 pt-6 border-t border-white/[0.06]" >
-                            <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.05]" >
-                              <span className="text-[10px] font-mono text-[#D9A441] uppercase block" > Core Architecture </span>
-                                < span className = "text-xs font-semibold text-white mt-1 block" > PyTorch & MobileNetV3 </span>
-                                  < span className = "text-[10px] text-white/40 block mt-0.5" > Edge - optimized quantization </span>
-                                    </div>
-                                    < div className = "p-3 rounded-xl bg-white/[0.02] border border-white/[0.05]" >
-                                      <span className="text-[10px] font-mono text-[#D9A441] uppercase block" > Detection Scope </span>
-                                        < span className = "text-xs font-semibold text-white mt-1 block" > 38 + Plant Pathology Classes </span>
-                                          < span className = "text-[10px] text-white/40 block mt-0.5" > Fungal, bacterial & viral pests </span>
-                                            </div>
-                                            < div className = "p-3 rounded-xl bg-white/[0.02] border border-white/[0.05]" >
-                                              <span className="text-[10px] font-mono text-[#D9A441] uppercase block" > Impact Goal </span>
-                                                < span className = "text-xs font-semibold text-white mt-1 block" > Zero - Delay Diagnosis </span>
-                                                  < span className = "text-[10px] text-white/40 block mt-0.5" > Direct crop yield protection </span>
-                                                    </div>
-                                                    </div>
-
-                                                    < div className = "flex flex-wrap gap-2 mt-6" >
-                                                    {
-                                                      ['Computer Vision', 'Deep Learning', 'PyTorch', 'Agricultural Tech', 'Edge AI', 'Mobile Inference'].map((t) => (
-                                                        <span
-                  key= { t }
-                  className = "text-[10px] font-mono px-3 py-1 rounded-full bg-[#D9A441]/[0.08] text-[#D9A441]/90 border border-[#D9A441]/25"
-                                                        >
-                                                        { t }
-                                                        </span>
-                                                      ))
-                                                    }
-                                                      </div>
-                                                      </div>
-                                                      </div>
-                                                      </section>
-
-{/* ━━━ GAURI GAROLE — TEAMMATE & BEST FRIEND TRIBUTE ━━━ */ }
-<section id="teammate" className = "relative z-10 px-6 sm:px-10 lg:px-20 py-16 sm:py-24 bg-black" >
-  <div className="reveal-section max-w-4xl mx-auto" >
-    <div className="relative rounded-2xl border border-white/[0.08] bg-[#0a0c12] p-7 sm:p-11 overflow-hidden shadow-2xl" >
-      {/* Warm glow */ }
-      < div className = "absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[#D9A441]/[0.05] blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-[#4C7EFF]/[0.04] blur-3xl pointer-events-none" />
-
-          <div className="relative z-10" >
-            <div className="flex items-center gap-2 mb-6" >
-              <Heart className="w-4 h-4 text-[#D9A441]" />
-                <span className="text-[11px] font-mono tracking-widest text-[#D9A441] uppercase font-semibold" >
-                  The Person Behind It All
-                    </span>
-                    </div>
-
-{/* Large quote */ }
-<div className="text-6xl text-[#D9A441]/20 font-display leading-none mb-2 select-none" > "</div>
-
-  < blockquote className = "text-lg sm:text-xl text-white font-sans leading-relaxed italic -mt-6" >
-    I took part in Aavishkar because of one person — Gauri Garole, my best friend.The competition rules permitted a maximum team size of two, and she was the reason we entered and pushed each other every step of the way.
-              </blockquote>
-
-      < p className = "text-sm sm:text-base text-white/70 font-sans leading-relaxed mt-6" >
-        Gauri was with me as my official teammate up to the Aavishkar but after this also we won 4 project expo and 2 National level hackathon.We competed side - by - side winning the College Level, winning the District Level, and triumphing at the SGBAU University Level Championship.She poured her heart into the project — designing every presentation deck with world - class narrative clarity, crafting the original handmade poster that later earned our spot at state, and assisting relentlessly during preparation and technical testing.
-              </p>
-
-          < p className = "text-sm sm:text-base text-white/70 font-sans leading-relaxed mt-4" >
-            Her design instincts, fierce encouragement, and dedication laid the absolute foundation that allowed Flora Vision AI to reach the Maharashtra State Finals at DBATU.You cannot survive a tournament this brutal alone — and having Gauri as my teammate and best friend made all the difference in the world.
-              </p>
-
-{/* Teammate Card Footer */ }
-<div className="mt-9 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4" >
-  <div>
-  <h4 className="font-display text-xl font-bold text-white" > Gauri Garole </h4>
-    < p className = "text-xs text-white/50 font-sans mt-0.5" >
-      Teammate · Presentation  And  PPT Expert · Excellent Developer
-        </p>
+              {/* Technical Stack Specifications */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#08080a] border border-white/[0.08]">
+                <span className="text-[10px] font-mono tracking-widest text-[#D9A441] uppercase font-semibold block mb-3">
+                  Technical Specifications
+                </span>
+                <div className="space-y-2 text-xs font-mono">
+                  <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
+                    <span className="text-white/40">Frontend UI</span>
+                    <span className="text-white font-semibold">Streamlit · Custom CSS</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
+                    <span className="text-white/40">Machine Learning</span>
+                    <span className="text-white font-semibold">TensorFlow · Keras</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
+                    <span className="text-white/40">Generative AI</span>
+                    <span className="text-white font-semibold">Google Gemini 2.5 Flash</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1">
+                    <span className="text-white/40">Libraries &amp; Audio</span>
+                    <span className="text-white font-semibold">OpenCV · pyttsx3 · Geocoder</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        < a
-href = "https://www.linkedin.com/in/gauri-garole-a96411256/"
-target = "_blank"
-rel = "noreferrer"
-className = "inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0077B5]/20 hover:bg-[#0077B5]/30 border border-[#0077B5]/40 text-white text-xs font-mono transition-all hover:scale-[1.02] shadow-lg"
-  >
-  <ExternalLink className="w-3.5 h-3.5 text-[#0077B5]" />
-    <span>Connect with Gauri on LinkedIn </span>
-      </a>
-      </div>
-      </div>
-      </div>
-      </div>
       </section>
 
-{/* ━━━ CLOSING & BACK TO PORTFOLIO ━━━ */ }
-<section className="relative z-10 px-6 sm:px-10 lg:px-20 py-16 sm:py-24 border-t border-white/[0.06] bg-[#06070a]" >
-  <div className="reveal-section max-w-3xl mx-auto text-center" >
-    <span className="w-2 h-2 rounded-full bg-[#D9A441] inline-block mb-3 shadow-[0_0_10px_#D9A441]" />
-      <h3 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight" >
-        From Lab to State Podium.
-          </h3>
-          < p className = "text-sm text-white/50 font-sans mt-3 mb-8 max-w-lg mx-auto" >
-            Aavishkar proved that purposeful engineering and relentless execution can compete with the finest research universities in the state.
-          </p>
-
-              < Link
-to = "/"
-className = "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#D9A441] hover:bg-[#e4b356] text-black font-mono font-bold text-sm transition-all shadow-[0_2px_18px_rgba(217,164,65,0.35)] hover:shadow-[0_2px_26px_rgba(217,164,65,0.6)] hover:scale-[1.02]"
-  >
-  <ArrowLeft className="w-4 h-4" />
-    <span>Return to Full Portfolio </span>
-      </Link>
-
-      < p className = "text-[11px] font-mono text-white/20 mt-8 tracking-widest uppercase" >
-        Yash Lawankar · Portfolio 2026
-          </p>
+      {/* ━━━ GAURI GAROLE — TEAMMATE & BEST FRIEND TRIBUTE ━━━ */}
+      <section id="teammate" className="relative z-10 px-6 sm:px-10 lg:px-20 py-16 sm:py-24 bg-black border-t border-white/[0.08]">
+        <div className="reveal-section max-w-5xl mx-auto">
+          {/* Header Tag */}
+          <div className="flex items-center gap-2 mb-3">
+            <Heart className="w-3.5 h-3.5 fill-[#D9A441]/20 text-[#D9A441]" />
+            <span className="text-[11px] font-mono tracking-widest text-[#D9A441] uppercase font-semibold">
+              The Person Behind It All
+            </span>
           </div>
-          </section>
+
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+            Behind Every Great Project is an Unstoppable Team<span className="text-[#D9A441]">.</span>
+          </h2>
+
+          {/* Two-Column Editorial Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-8 items-start">
+            {/* Left 4-5 Columns: Profile & Honors */}
+            <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#09090b] border border-white/[0.08]">
+              <div className="flex items-center gap-4">
+                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-neutral-950 border border-[#D9A441]/30 flex items-center justify-center font-display font-bold text-lg sm:text-xl text-[#D9A441] shrink-0 shadow-lg">
+                  GG
+                </div>
+                <div>
+                  <h3 className="font-display text-xl font-bold text-white tracking-tight">
+                    Gauri Garole
+                  </h3>
+                  <p className="text-xs text-white/50 font-sans mt-0.5">
+                    Teammate · PPT Expert · Developer
+                  </p>
+                </div>
+              </div>
+
+              {/* LinkedIn Button */}
+              <a
+                href="https://www.linkedin.com/in/gauri-garole-a96411256/"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.03] hover:bg-[#0077B5]/20 border border-white/10 hover:border-[#0077B5]/60 text-white text-xs font-mono transition-all duration-300 shadow-md group"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-[#0077B5] group-hover:scale-110 transition-transform">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                <span>Connect on LinkedIn</span>
+                <ExternalLink className="w-3 h-3 text-white/40 group-hover:text-white transition-colors" />
+              </a>
+
+              {/* Track Record List */}
+              <div className="mt-6 pt-5 border-t border-white/[0.06] space-y-2">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#D9A441] block mb-2 font-semibold">
+                  Shared Track Record
+                </span>
+                <div className="flex items-center gap-2 text-xs font-mono text-white/70">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#D9A441] shrink-0" />
+                  <span>4× Inter-College Project Expo Wins</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-mono text-white/70">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#D9A441] shrink-0" />
+                  <span>2× National Level Hackathons</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-mono text-white/70">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#D9A441] shrink-0" />
+                  <span>SGBAU University Champions</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-mono text-white/40 pt-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/20 ml-1 mr-1" />
+                  <span>PRMITR CSE · 2024–2025</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right 7-8 Columns: Quote & Narrative */}
+            <div className="lg:col-span-8 flex flex-col justify-center">
+              {/* Gold border quote */}
+              <div className="border-l-2 border-[#D9A441] pl-5 sm:pl-6 py-1">
+                <blockquote className="font-display text-lg sm:text-xl font-medium text-white leading-relaxed italic">
+                  “I took part in Aavishkar because of one person — <span className="text-[#D9A441] not-italic font-semibold">Gauri Garole, my best friend</span>. The competition rules permitted a maximum team size of two, and she was the reason we entered and pushed each other every step of the way.”
+                </blockquote>
+              </div>
+
+              {/* Personal Story paragraphs */}
+              <div className="mt-6 space-y-4 text-sm sm:text-base text-white/70 font-sans leading-relaxed">
+                <p>
+                  Gauri was with me as my official teammate up to the Aavishkar but after this also we won <strong className="text-white font-semibold">4 project expo and 2 National level hackathon</strong>. We competed side-by-side winning the College Level, winning the District Level, and triumphing at the SGBAU University Level Championship.
+                </p>
+                <p>
+                  She poured her heart into the project — designing every presentation deck with world-class narrative clarity, crafting the original handmade poster that later earned our spot at state, and assisting relentlessly during preparation and technical testing.
+                </p>
+                <p>
+                  Her design instincts, fierce encouragement, and dedication laid the absolute foundation that allowed Flora Vision AI to reach the Maharashtra State Finals at DBATU. You cannot survive a tournament this brutal alone — and having Gauri as my teammate and best friend made all the difference in the world.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━ MINIMAL FOOTER ━━━ */}
+      <footer className="relative z-10 w-full bg-black border-t border-white/[0.08] text-white py-8 sm:py-10 px-6 sm:px-10 lg:px-16">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Left: Brand & Minimal Back Button */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <span className="font-display font-black text-lg tracking-tight text-white">
+              YL<span className="text-[#D9A441]">.</span>
+            </span>
+
+            <span className="text-white/20 hidden sm:inline">•</span>
+
+            <Link
+              to="/"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+              }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-[#D9A441] text-white/80 hover:text-black border border-white/10 hover:border-[#D9A441] font-mono text-xs transition-all group"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
+              <span>Back to Portfolio</span>
+            </Link>
+
+            <span className="text-white/20 hidden md:inline">•</span>
+
+            <span className="text-xs font-mono text-white/40 hidden md:inline">
+              © {new Date().getFullYear()} Yash Lawankar · Aavishkar State Runner-Up
+            </span>
+          </div>
+
+          {/* Center: Section Anchor Jump Links */}
+          <div className="hidden lg:flex items-center gap-4 text-xs font-mono text-white/40">
+            <a href="#tournament" onClick={(e) => handleAnchorClick(e, 'tournament')} className="hover:text-[#D9A441] transition-colors">
+              Format
+            </a>
+            <span className="text-white/15">•</span>
+            <a href="#timeline" onClick={(e) => handleAnchorClick(e, 'timeline')} className="hover:text-[#D9A441] transition-colors">
+              Timeline
+            </a>
+            <span className="text-white/15">•</span>
+            <a href="#press" onClick={(e) => handleAnchorClick(e, 'press')} className="hover:text-[#D9A441] transition-colors">
+              Press
+            </a>
+            <span className="text-white/15">•</span>
+            <a href="#project" onClick={(e) => handleAnchorClick(e, 'project')} className="hover:text-[#D9A441] transition-colors">
+              Flora Vision AI
+            </a>
+            <span className="text-white/15">•</span>
+            <a href="#teammate" onClick={(e) => handleAnchorClick(e, 'teammate')} className="hover:text-[#D9A441] transition-colors">
+              Gauri Garole
+            </a>
+          </div>
+
+          {/* Right: Social Channels & Back to Top */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              <a
+                href={SOCIAL_LINKS.github}
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white/50 hover:text-white hover:bg-white/[0.06] transition-colors"
+                title="GitHub"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </svg>
+              </a>
+
+              <a
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white/50 hover:text-[#4C7EFF] hover:bg-[#4C7EFF]/10 transition-colors"
+                title="LinkedIn"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+              </a>
+
+              <a
+                href={SOCIAL_LINKS.credly}
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white/50 hover:text-[#D9A441] hover:bg-[#D9A441]/10 transition-colors"
+                title="Credly"
+              >
+                <Award className="w-4 h-4" />
+              </a>
+
+              <a
+                href={SOCIAL_LINKS.kyndle}
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white/50 hover:text-orange-400 hover:bg-orange-500/10 transition-colors"
+                title="Kyndle"
+              >
+                <Briefcase className="w-4 h-4" />
+              </a>
+            </div>
+
+            <span className="w-px h-4 bg-white/10 mx-1" />
+
+            <button
+              type="button"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-[#D9A441] hover:text-black border border-white/[0.08] hover:border-[#D9A441] flex items-center justify-center text-white/50 transition-all cursor-pointer group"
+              aria-label="Back to top"
+              title="Back to top"
+            >
+              <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </footer>
 
 {/* ━━━ LIGHTBOX MODAL ━━━ */ }
 {
