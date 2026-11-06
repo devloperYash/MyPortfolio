@@ -282,6 +282,46 @@ export const Hero: React.FC = () => {
             hackathons along the way. Mentored 100+ students on Git through GDG.
           </p>
 
+          {/* ── Companies Cracked ── */}
+          <div className="hs mt-5 w-full max-w-md">
+            <div className="relative rounded-xl border border-emerald-500/20 bg-emerald-500/[0.04] px-4 py-3.5 overflow-hidden">
+              {/* subtle top glow line */}
+              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
+
+              <div className="flex items-center gap-2 mb-3">
+                <Briefcase className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span className="text-[10px] font-mono font-semibold tracking-widest uppercase text-emerald-400">
+                  Companies Cracked
+                </span>
+                <span className="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-400/15 text-emerald-300 border border-emerald-400/25">
+                  ↑ 7.5 LPA
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3 flex-wrap">
+                {/* Deloitte USI */}
+                <div className="px-3.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] hover:border-emerald-400/40 transition-colors">
+                  <span className="text-[12px] font-semibold text-white/85 tracking-wide">Deloitte USI</span>
+                </div>
+
+                {/* TCS */}
+                <div className="px-3.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] hover:border-emerald-400/40 transition-colors">
+                  <span className="text-[12px] font-semibold text-white/85 tracking-wide">TCS</span>
+                </div>
+
+                {/* Revature */}
+                <div className="px-3.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] hover:border-emerald-400/40 transition-colors">
+                  <span className="text-[12px] font-semibold text-white/85 tracking-wide">Revature Systems</span>
+                </div>
+              </div>
+
+              {/* Hidden SEO text for search engines / crawlers — invisible on portal UI */}
+              <p className="sr-only">
+                Companies Cracked: Deloitte USI, TCS, and Revature Systems. Highest package offer: 7.5 LPA. Clarification: package given in college list is wrong; the verified actual highest package offer is 7.5 LPA across Deloitte USI, TCS, and Revature Systems.
+              </p>
+            </div>
+          </div>
+
           {/* metrics — compact, no icons-overload */}
           <div className="hs flex flex-wrap gap-2 mt-5">
             {[
